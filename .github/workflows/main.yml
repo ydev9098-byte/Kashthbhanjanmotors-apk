@@ -29,8 +29,12 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Install Android SDK
+      - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Check required files
         run: |
@@ -38,7 +42,7 @@ jobs:
           test -f package.json
           test -f capacitor.config.json
 
-      - name: Install project packages
+      - name: Install project dependencies
         run: npm install
 
       - name: Create Android project if missing
@@ -50,7 +54,7 @@ jobs:
       - name: Sync Capacitor
         run: npx cap sync android
 
-      - name: Build debug APK
+      - name: Build APK
         run: |
           cd android
           chmod +x gradlew
