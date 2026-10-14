@@ -30,12 +30,6 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Verify Android SDK
-        run: |
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          test -d "$ANDROID_HOME"
-          test -f "$ANDROID_HOME/platform-tools/adb"
-
       - name: Check project files
         run: |
           test -f www/index.html
@@ -44,7 +38,7 @@ jobs:
           test -f scripts/build.js
           test -f scripts/native-bridge.js
 
-      - name: Install project dependencies
+      - name: Install dependencies
         run: npm install --no-audit --no-fund
 
       - name: Build web assets
