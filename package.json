@@ -1,0 +1,22 @@
+{
+  "name": "kashtbhanjan-motors-apk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shree Kashtbhanjan Motors invoice and quotation app for Android",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "cap:sync": "npm run build && cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/app-launcher": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/filesystem": "^7.0.0",
+    "@capacitor/share": "^7.0.0",
+    "html2canvas": "^1.4.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0",
+    "esbuild": "^0.25.0"
+  }
+}
