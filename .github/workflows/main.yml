@@ -30,13 +30,23 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Check project files
+      - name: Show repository files
         run: |
-          test -f www/index.html
-          test -f package.json
-          test -f capacitor.config.json
-          test -f scripts/build.js
-          test -f scripts/native-bridge.js
+          echo "Current directory:"
+          pwd
+          echo "Repository root:"
+          ls -la
+          echo "Project files:"
+          find . -maxdepth 3 -type f | sort
+
+      - name: Check required files
+        run: |
+          test -f www/index.html || (echo "ERROR: www/index.html missing" && exit 1)
+          test -f package.json || (echo "ERROR: package.json missing" && exit 1)
+          test -f capacitor.config.json || (echo "ERROR: capacitor.config.json missing" && exit 1)
+          test -f scripts/build.js || (echo "ERROR: scripts/build.js missing" && exit 1)
+          test -f scripts/native-bridge.js || (echo "ERROR: scripts/native-bridge.js missing" && exit 1)
+          echo "All required files found."
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
