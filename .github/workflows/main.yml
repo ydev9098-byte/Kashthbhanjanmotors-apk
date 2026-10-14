@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -33,14 +32,14 @@ jobs:
       - name: Install Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install project packages
-        run: npm install
-
-      - name: Check project files
+      - name: Check required files
         run: |
           test -f www/index.html
           test -f package.json
           test -f capacitor.config.json
+
+      - name: Install project packages
+        run: npm install
 
       - name: Create Android project if missing
         run: |
